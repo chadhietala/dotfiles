@@ -14,6 +14,6 @@ curl -L http://install.ohmyz.sh | sh
 # Copy my theme
 cp theme "$HOME/.oh-my-zsh/themes/"
 
-git clone git://github.com/chadhietala/dotfiles.git
+git clone --recursive git://github.com/chadhietala/dotfiles.git
 cd dotfiles
 sudo bash symlinks-dotfiles.sh

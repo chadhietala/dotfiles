@@ -1,3 +1,3 @@
 [submodule "sublime/Packages/Theme - Spacegray"]
-  path = sublime/Packages/Theme - Spacegray
-  url = git@github.com:kkga/spacegray.git
+	path = sublime/Packages/Theme - Spacegray
+	url = http://github.com/kkga/spacegray
