@@ -13,6 +13,10 @@ curl -L http://install.ohmyz.sh | sh
 
 # Copy my theme
 cp theme "$HOME/.oh-my-zsh/themes/"
+cd "$HOME/.oh-my-zsh"
+git add .
+git commit -m "adding theme"
+cd $dir
 
 git clone --recursive git://github.com/chadhietala/dotfiles.git
 cd dotfiles
