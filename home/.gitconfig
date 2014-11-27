@@ -1,0 +1,14 @@
+[user]
+  name = Chad Hietala
+  email = chadhietala@gmail.com
+
+[github]
+  user = chadhietala
+
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+  
+[core]
+  editor = subl
