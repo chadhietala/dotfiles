@@ -8,6 +8,12 @@ theme="$dir/oh-my-zsh/chietala.zsh-theme"
 mkdir -p $dir
 cd $dir
 
+# Install NVM
+curl https://raw.githubusercontent.com/creationix/nvm/v0.19.0/install.sh | bash
+source ~/.zshrc
+nvm install 0.10.33
+nvm alias default 0.10.33
+
 # Install oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
 
