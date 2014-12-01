@@ -46,3 +46,6 @@ function edit() {
   $EDITOR $dir
 }
 alias e=edit
+
+# Source nvm
+source ~/.nvm/nvm.sh
