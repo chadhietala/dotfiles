@@ -19,7 +19,7 @@ link() {
 for location in $(find home -name '.*'); do
   file="${location##*/}"
   file="${file%.sh}"
-  link="$dotfiles/$location" "$HOME/$file"
+  link "$dotfiles/$location" "$HOME/$file"
 done
 
 if [[ `uname` == 'Darwin' ]]; then
