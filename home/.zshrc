@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # Aliases
 alias sz='source ~/.zshrc'
 alias ez='vim ~/.zshrc'
