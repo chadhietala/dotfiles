@@ -26,4 +26,4 @@ cd $dir
 
 git clone --recursive git://github.com/chadhietala/dotfiles.git
 cd dotfiles
-sudo bash symlinks-dotfiles.sh
+sudo bash symlink-dotfiles.sh
