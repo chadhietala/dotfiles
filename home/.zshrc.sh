@@ -6,6 +6,10 @@ alias nom="rm -rf node_modules && npm cache clean && npm i"
 alias nombom="rm -rf node_modules && npm cache clean && npm i && rm -rf bower_components && bower install"
 alias mkdir="mkdir -p"
 
+# DON'T BEEP AT ME!
+setopt NO_HIST_BEEP 
+setopt NO_LIST_BEEP
+
 # case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
