@@ -1,4 +1,4 @@
-echo 'Provisioning $(hostname)'
+echo 'Provisioning...'
 
 echo 'Changing editor to zsh: `chsh -s /bin/zsh`'
 chsh -s /bin/zsh
@@ -13,6 +13,9 @@ curl https://raw.githubusercontent.com/creationix/nvm/v0.19.0/install.sh | bash
 source ~/.zshrc
 nvm install 0.10.33
 nvm alias default 0.10.33
+
+# Install RVM
+\curl -sSL https://get.rvm.io | bash -s stable
 
 # Install oh-my-zsh
 curl -L http://install.ohmyz.sh | sh

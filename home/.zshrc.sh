@@ -24,8 +24,8 @@ plugins=(git node)
 source $ZSH/oh-my-zsh.sh
 
 # Editors
-export EDITOR='/usr/local/bin/sublime'
-export VISUAL='/usr/local/bin/sublime'
+export EDITOR='/usr/local/bin/subl'
+export VISUAL='/usr/local/bin/subl'
 export PAGER='less'
 
 # Functions
