@@ -43,6 +43,21 @@ function manp {
   fi
 }
 
+function hack() {
+  if ($1 == "up"); then
+    git pull --rebase
+  else
+    print 'Hackity Hack...'
+    local dir="~/workspace/$1"
+    mkdir $dir
+    cd $dir
+    touch .gitignore
+    echo "node_modules\n.DS_Store\nnpm-debug.log\nnpm-shrinkwrap.json" > .gitignore
+    git init
+    npm init
+  fi
+}
+
 # Opens file in EDITOR.
 function edit() {
   local dir=$1
