@@ -11,7 +11,7 @@
 
 # Node.js package manager
 /node_modules
-/npm-debug.log
+npm-debug.log
 
 # Other stuff
 /tmp
