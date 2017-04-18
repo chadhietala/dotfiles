@@ -1,14 +1,30 @@
 [user]
   name = Chad Hietala
   email = chadhietala@gmail.com
-
 [github]
   user = chadhietala
-
 [filter "media"]
   required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
-  
+	clean = git media clean %f
+	smudge = git media smudge %f
+[diff]
+  compactionHeuristic = true
 [core]
-  editor = subl
+	editor = nvim
+	excludesfile = /Users/chietala/.gitignore
+[push]
+	default = simple
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[url "https://"]
+	insteadOf = git://
+[url "git://"]
+	insteadOf = https://
+[grep]
+	lineNumber = true
