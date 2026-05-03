@@ -1,0 +1,10 @@
+{{- $isWork := promptBoolOnce . "isWork" "Is this a work machine?" -}}
+{{- $name := promptStringOnce . "name" "Git author name" -}}
+{{- $email := promptStringOnce . "email" "Git author email" -}}
+
+sourceDir = "{{ .chezmoi.homeDir }}/Code/dotfiles"
+
+[data]
+  isWork = {{ $isWork }}
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}

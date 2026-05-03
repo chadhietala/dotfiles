@@ -1,0 +1,23 @@
+[user]
+	name = {{ .name | quote }}
+	email = {{ .email | quote }}
+[pull]
+	rebase = true
+[core]
+	editor = nvim
+[alias]
+	newpr = !git_newpr
+	updatepr = !git_updatepr
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+{{- $brewPrefix := "/usr/local" }}
+{{- if eq .chezmoi.arch "arm64" }}{{- $brewPrefix = "/opt/homebrew" }}{{- end }}
+[credential "https://github.com"]
+	helper =
+	helper = !{{ $brewPrefix }}/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !{{ $brewPrefix }}/bin/gh auth git-credential
