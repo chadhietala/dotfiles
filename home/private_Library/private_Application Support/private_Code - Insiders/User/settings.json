@@ -1,0 +1,31 @@
+{
+    "workbench.colorTheme": "Tokyo Night Storm",
+    "editor.fontSize": 14,
+    "editor.fontFamily": "'Cascadia Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
+    "editor.lineHeight": 1.8,
+    "editor.inlineSuggest.enabled": true,
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "500",
+    "editor.insertSpaces": true,
+    "editor.folding": true,
+    "window.zoomLevel": 1,
+    "security.workspace.trust.untrustedFiles": "open",
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never",
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+    },
+    "python.locator": "js",
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "jupyter.askForKernelRestart": false
+,
+"remote.SSH.localServerDownload": "auto",
+"terminal.integrated.enablePersistentSessions": false,
+"remote.SSH.connectTimeout": 45,
+"yaml.schemas": {
+    "file:///home/coder/.vscode-server-insiders/extensions/atlassian.atlascode-2.4.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+}
+}
