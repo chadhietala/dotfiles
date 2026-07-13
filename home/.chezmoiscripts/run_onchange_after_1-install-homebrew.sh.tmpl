@@ -8,5 +8,9 @@ if ! command -v brew &>/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+if brew trust --help &>/dev/null; then
+  brew trust --cask nikitabobko/tap/aerospace
+fi
+
 brew bundle --file="{{ .chezmoi.homeDir }}/Brewfile"
 {{ end -}}
