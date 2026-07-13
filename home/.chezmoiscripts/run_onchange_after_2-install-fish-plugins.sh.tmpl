@@ -9,4 +9,16 @@ if ! command -v fish &>/dev/null; then
 fi
 
 fish -c "if not functions -q fisher; curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher; end && fisher update"
+
+FISH_PATH="$(command -v fish)"
+if ! grep -qx "$FISH_PATH" /etc/shells; then
+  echo "Adding $FISH_PATH to /etc/shells..."
+  echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
+fi
+
+CURRENT_SHELL="$(dscl . -read "/Users/$(whoami)" UserShell | awk '{print $2}')"
+if [ "$CURRENT_SHELL" != "$FISH_PATH" ]; then
+  echo "Setting fish as default shell..."
+  chsh -s "$FISH_PATH"
+fi
 {{ end -}}

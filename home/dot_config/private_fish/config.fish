@@ -104,9 +104,6 @@ function git_updatepr
     git rebase --interactive --autosquash "$pr_commit"^
 end
 
-git config --global alias.newpr '!git_newpr'
-git config --global alias.updatepr '!git_updatepr'
-
 complete -c git-newpr -f -a '(__fish_git_branches)' --description 'Branch'
 
 
@@ -114,8 +111,10 @@ starship init fish | source
 
 set -U fish_greeting ""
 
-direnv hook fish | source
-set -g direnv_fish_mode disable_arrow
+if command -q direnv
+    direnv hook fish | source
+    set -g direnv_fish_mode disable_arrow
+end
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
