@@ -63,15 +63,13 @@ done
 sketchybar --add item clock right \
            --set clock update_freq=10  script="$PLUGIN_DIR/clock.sh" \
 	   --add item battery right \
+	   --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+	   --subscribe battery system_woke power_source_change \
 	   --add item volume right \
 	   --set volume script="$PLUGIN_DIR/volume.sh" \
 	   --subscribe volume volume_change \
-	   --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-	   --subscribe battery system_wokr power_source_change \
-	    icon="" \
-	    label.font="Hack Nerd Font:Italic:17.0" \
-	    icon.color=0x44FFFFFF \
-	    label.color=0x44FFFFFF
+	   --add item wifi right \
+	   --set wifi update_freq=30 script="$PLUGIN_DIR/wifi.sh" click_script="$PLUGIN_DIR/wifi.sh toggle"
 
 sketchybar --hotload on
 
