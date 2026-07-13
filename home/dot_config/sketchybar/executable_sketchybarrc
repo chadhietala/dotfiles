@@ -1,77 +1,149 @@
-# This is a demo config to showcase some of the most important commands.
-# It is meant to be changed and configured, as it is intentionally kept sparse.
-# For a (much) more advanced configuration example see my dotfiles:
-# https://github.com/FelixKratz/dotfiles
+#!/bin/bash
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 ##### Bar Appearance #####
-# https://felixkratz.github.io/SketchyBar/config/bar
-# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+BG=0x99000000
+FONT_COLOR=0xffcdd6f4
+ITEM_COLOR=0x00000000
+ITEM_PADDING=8
+GAP=6
 
-sketchybar --bar position=top margin=0 y_offset=0 corner_radius=0 height=40 color=0xFF1A1B26
+sketchybar --bar \
+  position=top \
+  margin=0 y_offset=12 height=38 \
+  corner_radius=0 blur_radius=0 \
+  border_width=0 \
+  padding_left=17 padding_right=17 \
+  shadow.drawing=off \
+  color=0x00000000
 
-##### Defaults #####
-# https://felixkratz.github.io/SketchyBar/config/items
+##### Changing Defaults #####
+sketchybar --default \
+  label.font="SF Pro:Semibold:11.5" label.color=$FONT_COLOR \
+  label.padding_left=$ITEM_PADDING label.padding_right=$ITEM_PADDING \
+  icon.font="Hack Nerd Font:Regular:16" \
+  icon.padding_left=$ITEM_PADDING \
+  background.color=$ITEM_COLOR \
+  background.padding_right=$GAP background.height=25 \
+  background.corner_radius=8
 
-default=(
-  padding_left=0
-  padding_right=4
-  icon.font="Hack Nerd Font:Bold:20.0"
-  label.font="Hack Nerd Font:Bold:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
-  icon.padding_left=0
-  icon.padding_right=0
-  label.padding_left=4
-  label.padding_right=5
-)
-sketchybar --default "${default[@]}"
+##### Left Items #####
 
+# macOS indicator
+sketchybar --add item os left \
+  --set os \
+  icon= icon.color=0xffffffff \
+  icon.font.size=21 icon.y_offset=2 \
+  icon.padding_left=12 icon.padding_right=0 \
+  label.padding_left=0 label.padding_right=6 \
+  background.drawing=off \
+  background.padding_right=$GAP
 
+# Front app
+sketchybar --add item front-app left \
+  --set front-app \
+  script="$PLUGIN_DIR/front-app.sh" \
+  label.font.style="Bold" \
+  label.max_chars=20 \
+  scroll_texts=on \
+  --subscribe front-app front_app_switched
 
-# LEFT: AEROSPACE STUFF
+# Mic/camera in-use indicator
+sketchybar --add item mic left \
+  --set mic \
+  icon=󰍬 icon.color=0xffed8796 \
+  label="" \
+  drawing=off \
+  script="$PLUGIN_DIR/mic.sh" \
+  update_freq=5
+
+# Weather
+sketchybar --add item weather left \
+  --set weather \
+  icon=󰖐 \
+  script="$PLUGIN_DIR/weather.sh" \
+  update_freq=1500 \
+  --subscribe weather mouse.clicked
+
+# CPU + RAM
+sketchybar --add item sysinfo left \
+  --set sysinfo \
+  script="$PLUGIN_DIR/sysinfo.sh" \
+  update_freq=30 \
+  label.padding_right=14
+
+# Group all left items into one pill, clear of the notch
+sketchybar --add bracket left_group os front-app mic weather sysinfo \
+  --set left_group \
+  background.color=$BG \
+  background.corner_radius=12 \
+  background.height=32 \
+  background.drawing=on
+
+##### Right Items #####
+
+# Clock
+sketchybar --add item clock right \
+  --set clock \
+  script="$PLUGIN_DIR/clock.sh" \
+  label.padding_right=14 \
+  background.padding_right=$GAP \
+  update_freq=10 \
+  --subscribe clock mouse.entered mouse.exited mouse.clicked
+
+# Battery
+sketchybar --add item battery right \
+  --set battery \
+  script="$PLUGIN_DIR/battery.sh" \
+  update_freq=30 \
+  --subscribe battery mouse.entered mouse.exited
+
+# Volume
+sketchybar --add item volume right \
+  --set volume \
+  script="$PLUGIN_DIR/volume.sh" \
+  update_freq=30 \
+  --subscribe volume volume_change mouse.clicked
+
+# Aerospace Workspaces: one badge per numbered workspace, active one highlighted
 sketchybar --add event aerospace_workspace_change
 
-for sid in $(aerospace list-workspaces --all); do
-    sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change \
-        --set space.$sid \
-        background.color=0xffffffff \
-        background.corner_radius=4 \
-        background.height=15 \
-        background.drawing=off \
-	label="$sid" \
-        click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+for sid in $(aerospace list-workspaces --all | sort -rn); do
+  sketchybar --add item space.$sid right \
+    --subscribe space.$sid aerospace_workspace_change \
+    --set space.$sid \
+    icon="$sid" \
+    icon.font="SF Pro:Bold:12.0" \
+    icon.color=0xff939ab7 \
+    icon.padding_left=6 icon.padding_right=6 \
+    label.drawing=off \
+    background.corner_radius=6 \
+    background.height=22 \
+    background.color=0x44ffffff \
+    background.drawing=off \
+    click_script="aerospace workspace $sid" \
+    script="$PLUGIN_DIR/workspace.sh $sid"
 done
 
-#for sid in $(aerospace list-workspaces --monitor 1 --empty); do
-#  sketchybar --set space.$sid display=0
-#done
+# Spotify
+sketchybar --add event spotify_change com.spotify.client.PlaybackStateChanged
+sketchybar --add item spotify right \
+  --set spotify \
+  background.padding_left=$GAP \
+  label.max_chars=30 \
+  scroll_texts=on \
+  script="$PLUGIN_DIR/spotify.sh" \
+  --subscribe spotify spotify_change mouse.clicked
 
+# Group all right items into one pill, clear of the notch
+sketchybar --add bracket right_group clock battery volume space.1 space.2 space.3 space.4 space.5 space.6 space.7 space.8 space.9 spotify \
+  --set right_group \
+  background.color=$BG \
+  background.corner_radius=12 \
+  background.height=32 \
+  background.drawing=on
 
-# CENTER:
-#sketchybar --add item clock center \
-#           --set clock update_freq=10  script="$PLUGIN_DIR/clock.sh"
-
-
-# RIGHT:
-# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
-# https://felixkratz.github.io/SketchyBar/config/events
-
-sketchybar --add item clock right \
-           --set clock update_freq=10  script="$PLUGIN_DIR/clock.sh" \
-	   --add item battery right \
-	   --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-	   --subscribe battery system_woke power_source_change \
-	   --add item volume right \
-	   --set volume script="$PLUGIN_DIR/volume.sh" \
-	   --subscribe volume volume_change \
-	   --add item wifi right \
-	   --set wifi update_freq=30 script="$PLUGIN_DIR/wifi.sh" click_script="$PLUGIN_DIR/wifi.sh toggle"
-
-sketchybar --hotload on
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update

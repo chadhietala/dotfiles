@@ -1,8 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 
-# The $NAME variable is passed from sketchybar and holds the name of
-# the item invoking this script:
-# https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
+LOCAL_TIME="$(date '+%H:%M')"
+UTC_TIME="$(TZ=UTC date '+%H:%M') UTC"
+FULL_DATE="$(date '+%a %b %d %Y') ${LOCAL_TIME} | ${UTC_TIME}"
 
-sketchybar --set "$NAME" label="$(date '+%m/%d %I:%M %p')"
-
+case "$SENDER" in
+  "mouse.entered")
+    sketchybar --set $NAME label="${LOCAL_TIME} | ${UTC_TIME}"
+    ;;
+  "mouse.exited")
+    sketchybar --set $NAME label="${LOCAL_TIME}"
+    ;;
+  "mouse.clicked")
+    echo -n "$(date '+%Y-%m-%d %H:%M')" | pbcopy
+    sketchybar --set $NAME label="Copied!"
+    sleep 1
+    sketchybar --set $NAME label="${LOCAL_TIME}"
+    ;;
+  *)
+    sketchybar --set $NAME \
+      label="${LOCAL_TIME}" \
+      icon=󰥔 icon.color=0xffff9cbe
+    ;;
+esac
