@@ -1,0 +1,11 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "darwin" -}}
+set -euo pipefail
+
+# Play a sound when volume is changed via the keyboard media keys.
+# This is stored per-host, not in the regular global domain, and a plain
+# `defaults write` doesn't notify already-running processes to pick it up -
+# toggling it once in System Settings > Sound (or a logout/login) may still
+# be needed for it to take effect immediately.
+defaults -currentHost write -g com.apple.sound.beep.feedback -bool true
+{{ end -}}
