@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$HOME/.config/theme/theme.sh"
 
 NCPU=$(sysctl -n hw.ncpu)
 CPU=$(ps -A -o %cpu | awk -v cores="$NCPU" '{s+=$1} END {printf "%.0f%%", s/cores}')
@@ -14,5 +15,5 @@ RAM=$(vm_stat | awk -v ps="$page_size" -v total="$total" '
 ')
 
 sketchybar --set $NAME \
-  icon=󰻠 \
+  icon=󰻠 icon.color=$THEME_FG \
   label="${CPU}  󰍛 ${RAM}"

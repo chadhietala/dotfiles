@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$HOME/.config/theme/theme.sh"
 
 CACHE_FILE="/tmp/sketchybar_weather_location.cache"
 CACHE_TTL=3600  # 1 hour; IP-based location rarely changes minute to minute
@@ -57,5 +58,5 @@ case $CODE in
 esac
 
 sketchybar --set $NAME \
-  icon=󰖐 icon.color=0xff5edaff \
+  icon=󰖐 icon.color=$THEME_GOLD \
   label="${TEMPERATURE}°C • ${DESC}"

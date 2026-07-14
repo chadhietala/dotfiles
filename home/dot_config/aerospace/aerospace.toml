@@ -4,13 +4,11 @@
 start-at-login = true
 
 after-startup-command = [
-    # JankyBorders has a built-in detection of already running process,
-    # so it won't be run twice on AeroSpace restart
-    # A color formatted as 0xAARRGGBB, where A is the alpha channel, R the red channel, G the green channel and B the blue channel. All constituents take a base 16 number, i.e. 0-F.
+    # Colors/width live in ~/.config/theme/theme.sh, shared with sketchybar
+    'exec-and-forget ~/.config/aerospace/start-borders.sh',
     # Run Sketchybar together with AeroSpace
     # sketchbar has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
-    'exec-and-forget borders active_color=0xFF7DCFFF order=above hidpi="on" inactive_color=0xff414550 width=5 style="round"',
     'exec-and-forget sketchybar'
 ]
 

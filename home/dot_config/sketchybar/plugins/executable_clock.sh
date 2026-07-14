@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$HOME/.config/theme/theme.sh"
 
 LOCAL_TIME="$(date '+%H:%M')"
 UTC_TIME="$(TZ=UTC date '+%H:%M') UTC"
@@ -20,6 +21,6 @@ case "$SENDER" in
   *)
     sketchybar --set $NAME \
       label="${LOCAL_TIME}" \
-      icon=󰥔 icon.color=0xffff9cbe
+      icon=󰥔 icon.color=$THEME_GOLD
     ;;
 esac

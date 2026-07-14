@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$HOME/.config/theme/theme.sh"
 
 # Battery is here because the ICON_COLOR doesn't play well with all background colors
 
@@ -12,7 +13,7 @@ fi
 case ${PERCENTAGE} in
   [8-9][0-9] | 100)
     ICON=""
-    ICON_COLOR=0xffa6da95
+    ICON_COLOR=$THEME_OLIVE
     ;;
   7[0-9])
     ICON=""
