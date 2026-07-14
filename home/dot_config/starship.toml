@@ -72,7 +72,7 @@ ignore_timeout = true
 # command = "jj root >/dev/null 2>&1 || starship module git_status"
 command = "starship module git_status"
 description = "Only show git_status if we're not in a jj repo"
-format = "$output"
+format = "($output )"
 
 # [custom.jj]
 # ignore_timeout = true
