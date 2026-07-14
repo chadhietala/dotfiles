@@ -1,26 +1,19 @@
 #!/bin/bash
-# Shared "sunset" theme — single source of truth for borders, sketchybar, and
-# the desktop wallpaper. Edit values here, then run ~/.config/theme/apply.sh
-# to re-theme everything at once instead of hunting down hex codes per file.
+# Theme loader — sourced by borders, sketchybar, and its plugins.
+# Resolves which theme to use:
+#   1. $THEME_NAME env var, if set (ad-hoc override, doesn't persist)
+#   2. the persisted choice in ./current (written by switch.sh)
+#   3. "sunset" as the default
+#
+# To try a theme without persisting it:  THEME_NAME=tokyo-night ~/.config/theme/apply.sh
+# To switch and persist it:              ~/.config/theme/switch.sh tokyo-night
 
-# Desktop wallpaper
-export THEME_WALLPAPER="$HOME/Pictures/Wallpapers/sunset.webp"
+THEME_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Core palette (pulled from the wallpaper: gold meteor streaks, coral-pink
-# sky, violet top, plum clouds)
-export THEME_BG="0xCC2E1526"    # translucent plum-black glass (sketchybar bar/group bg)
-export THEME_FG="0xfff5e8e0"    # warm cream (default text/icon color)
-export THEME_GOLD="0xffffcf87"  # meteor gold (clock, weather, active workspace pill)
-export THEME_CORAL="0xffff8a65" # coral (front-app default icon)
-export THEME_PINK="0xffef5da0"  # magenta-pink (front-app fallback icon)
-export THEME_MAUVE="0xffbd8a99" # dusty mauve (inactive workspace icon)
-export THEME_ALERT="0xffff6f61" # coral-red (mic privacy alert)
-export THEME_OLIVE="0xffc4d97a" # warm olive-lime (battery full)
+if [ -z "${THEME_NAME:-}" ] && [ -f "$THEME_DIR/current" ]; then
+  THEME_NAME="$(cat "$THEME_DIR/current")"
+fi
+THEME_NAME="${THEME_NAME:-sunset}"
 
-# Window borders (JankyBorders)
-export THEME_BORDER_ACTIVE="0xFFFFB870"
-export THEME_BORDER_INACTIVE="0xff7a3a5c"
-export THEME_BORDER_WIDTH="3.7"
-
-# Active workspace pill background (translucent gold)
-export THEME_WORKSPACE_ACTIVE_BG="0x55ffcf87"
+source "$THEME_DIR/themes/$THEME_NAME.sh"
+export THEME_NAME
