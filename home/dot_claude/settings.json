@@ -1,8 +1,8 @@
 {
-  "theme": "auto",
-  "tui": "fullscreen",
   "attribution": {
     "commit": "",
     "pr": ""
-  }
+  },
+  "tui": "fullscreen",
+  "theme": "auto"
 }
