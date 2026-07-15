@@ -16,10 +16,14 @@ if [ -n "${THEME_GHOSTTY:-}" ] && [ -f "$GHOSTTY_CONFIG" ]; then
   sed -i '' "s/^theme = .*/theme = $THEME_GHOSTTY/" "$GHOSTTY_CONFIG"
 fi
 
-# Window borders (kill any running instance, JankyBorders dedupes on launch)
+# Window borders (kill any running instance, JankyBorders dedupes on launch).
+# Fully detached (nohup + closed stdio, not just `& disown`) so it survives
+# even when apply.sh is run from a terminal that's about to close (e.g. the
+# theme picker window) - a closing terminal can kill its whole process
+# group, which disown alone doesn't protect against.
 pkill -x borders 2>/dev/null || true
 sleep 0.5
-"$HOME/.config/aerospace/start-borders.sh" &
+nohup "$HOME/.config/aerospace/start-borders.sh" </dev/null >/dev/null 2>&1 &
 disown
 
 # Sketchybar (re-running the rc script re-applies config to the live bar).
