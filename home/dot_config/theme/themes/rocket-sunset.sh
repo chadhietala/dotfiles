@@ -3,6 +3,7 @@
 # streaks, coral-pink sky, violet top, plum clouds.
 
 export THEME_WALLPAPER="$HOME/Pictures/Wallpapers/sunset.webp"
+export THEME_GHOSTTY="Rose Pine Moon"
 
 export THEME_SURFACE="0xCC2E1526"    # translucent plum-black glass (sketchybar bar/group bg)
 export THEME_TEXT="0xfff5e8e0"    # warm cream (default text/icon color)

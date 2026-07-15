@@ -3,6 +3,7 @@
 # TokyoNight Storm terminal theme.
 
 export THEME_WALLPAPER=""  # no themed wallpaper yet; leave the desktop as-is
+export THEME_GHOSTTY="TokyoNight Storm"
 
 export THEME_SURFACE="0x99000000"    # translucent black (sketchybar bar/group bg)
 export THEME_TEXT="0xffcdd6f4"    # cool lavender-white (default text/icon color)
