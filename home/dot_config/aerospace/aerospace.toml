@@ -17,14 +17,6 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
-# Keep the theme picker floating instead of being tiled into the grid
-on-window-detected = [
-    {
-        if = 'test %{window-title} = "Theme Picker"',
-        run = ['layout floating'],
-    },
-]
-
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -167,6 +159,18 @@ outer.right =      16
 if.app-name-regex-substring = 'Code - Insiders|Cursor|Simulator|Warp|Xcode|VSCode'
 run = ['layout tiling', 'move-node-to-workspace 2']
 
+# Keep the theme picker floating instead of being tiled into the grid.
+# Must come before the general Ghostty rule below - both match the
+# picker (it's a Ghostty window too), and only the first match applies.
+[[on-window-detected]]
+if = 'test %{window-title} = "Theme Picker"'
+run = ['layout floating']
+
+# Note: cmd+t new tabs in Ghostty briefly get misdetected by AeroSpace as
+# a new window and tiled, splitting the screen (recovers once the tab
+# closes). https://github.com/ghostty-org/ghostty/issues/3170 - the only
+# known workaround floats ALL Ghostty windows, including genuinely new
+# ones, which was worse than the bug itself. Left un-fixed on purpose.
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ghostty|iTerm|terminal'
 run = ['layout tiling', 'move-node-to-workspace 3']
