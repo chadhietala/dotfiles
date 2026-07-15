@@ -5,6 +5,7 @@ options=(
 	style=round
 	width=$THEME_BORDER_WIDTH
 	hidpi=on
+	ax_focus=on
 	active_color=$THEME_BORDER_ACTIVE
 	inactive_color=$THEME_BORDER_INACTIVE
 )

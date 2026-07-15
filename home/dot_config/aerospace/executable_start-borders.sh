@@ -9,4 +9,5 @@ exec borders \
   width="$THEME_BORDER_WIDTH" \
   order=above \
   hidpi=on \
+  ax_focus=on \
   style=round
