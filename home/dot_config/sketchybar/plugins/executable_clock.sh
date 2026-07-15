@@ -21,6 +21,6 @@ case "$SENDER" in
   *)
     sketchybar --set $NAME \
       label="${LOCAL_TIME}" \
-      icon=󰥔 icon.color=$THEME_GOLD
+      icon=󰥔 icon.color=$THEME_ACCENT
     ;;
 esac

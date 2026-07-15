@@ -6,13 +6,13 @@ CAM_IN_USE=$(osascript -e 'do shell script "lsof -n 2>/dev/null | grep -c AppleC
 
 if [[ "$CAM_IN_USE" -gt 0 && "$MIC_IN_USE" -gt 0 ]]; then
   ICON=󰭹
-  sketchybar --set $NAME icon=$ICON icon.color=$THEME_ALERT drawing=on
+  sketchybar --set $NAME icon=$ICON icon.color=$THEME_DANGER drawing=on
 elif [[ "$CAM_IN_USE" -gt 0 ]]; then
   ICON=
-  sketchybar --set $NAME icon=$ICON icon.color=$THEME_ALERT drawing=on
+  sketchybar --set $NAME icon=$ICON icon.color=$THEME_DANGER drawing=on
 elif [[ "$MIC_IN_USE" -gt 0 ]]; then
   ICON=󰍬
-  sketchybar --set $NAME icon=$ICON icon.color=$THEME_ALERT drawing=on
+  sketchybar --set $NAME icon=$ICON icon.color=$THEME_DANGER drawing=on
 else
   sketchybar --set $NAME drawing=off
 fi

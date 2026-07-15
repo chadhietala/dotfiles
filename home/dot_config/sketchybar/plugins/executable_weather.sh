@@ -58,5 +58,5 @@ case $CODE in
 esac
 
 sketchybar --set $NAME \
-  icon=󰖐 icon.color=$THEME_GOLD \
+  icon=󰖐 icon.color=$THEME_ACCENT \
   label="${TEMPERATURE}°C • ${DESC}"

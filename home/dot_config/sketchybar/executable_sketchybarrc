@@ -4,8 +4,8 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 source "$HOME/.config/theme/theme.sh"
 
 ##### Bar Appearance #####
-BG=$THEME_BG
-FONT_COLOR=$THEME_FG
+BG=$THEME_SURFACE
+FONT_COLOR=$THEME_TEXT
 ITEM_COLOR=0x00000000
 ITEM_PADDING=8
 GAP=6
@@ -121,7 +121,7 @@ for sid in $(aerospace list-workspaces --all | sort -rn); do
     label.drawing=off \
     background.corner_radius=6 \
     background.height=22 \
-    background.color=$THEME_WORKSPACE_ACTIVE_BG \
+    background.color=$THEME_ACCENT_SUBTLE \
     background.drawing=off \
     click_script="aerospace workspace $sid" \
     script="$PLUGIN_DIR/workspace.sh $sid"

@@ -20,13 +20,13 @@ if [[ "$MUTED" == "true" || "$VOLUME" -eq 0 ]]; then
   ICON_COLOR=0xffee99a0
 elif [[ "$VOLUME" -le 30 ]]; then
   ICON=󰕿
-  ICON_COLOR=$THEME_FG
+  ICON_COLOR=$THEME_TEXT
 elif [[ "$VOLUME" -le 60 ]]; then
   ICON=󰖀
-  ICON_COLOR=$THEME_FG
+  ICON_COLOR=$THEME_TEXT
 else
   ICON=󰕾
-  ICON_COLOR=$THEME_FG
+  ICON_COLOR=$THEME_TEXT
 fi
 
 sketchybar --set $NAME \

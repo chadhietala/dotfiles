@@ -15,5 +15,5 @@ RAM=$(vm_stat | awk -v ps="$page_size" -v total="$total" '
 ')
 
 sketchybar --set $NAME \
-  icon=󰻠 icon.color=$THEME_FG \
+  icon=󰻠 icon.color=$THEME_TEXT \
   label="${CPU}  󰍛 ${RAM}"

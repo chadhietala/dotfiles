@@ -1,7 +1,7 @@
 #!/bin/bash
 source "$HOME/.config/theme/theme.sh"
 
-ICON_COLOR=$THEME_CORAL
+ICON_COLOR=$THEME_ACCENT_SECONDARY
 
 case $INFO in
   "Arc")
@@ -64,7 +64,7 @@ case $INFO in
     ICON=󰶘
     ;;
   *)
-    ICON_COLOR=$THEME_PINK
+    ICON_COLOR=$THEME_ACCENT_TERTIARY
     ICON=󰘔
     ;;
 esac

@@ -13,7 +13,7 @@ fi
 case ${PERCENTAGE} in
   [8-9][0-9] | 100)
     ICON=""
-    ICON_COLOR=$THEME_OLIVE
+    ICON_COLOR=$THEME_SUCCESS
     ;;
   7[0-9])
     ICON=""

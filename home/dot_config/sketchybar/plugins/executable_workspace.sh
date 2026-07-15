@@ -5,7 +5,7 @@ source "$HOME/.config/theme/theme.sh"
 # $FOCUSED_WORKSPACE is supplied by the aerospace_workspace_change trigger.
 
 if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-  sketchybar --set "$NAME" icon.color=$THEME_FG background.drawing=on
+  sketchybar --set "$NAME" icon.color=$THEME_TEXT background.drawing=on
 else
-  sketchybar --set "$NAME" icon.color=$THEME_MAUVE background.drawing=off
+  sketchybar --set "$NAME" icon.color=$THEME_MUTED background.drawing=off
 fi
