@@ -8,4 +8,11 @@ set -euo pipefail
 # toggling it once in System Settings > Sound (or a logout/login) may still
 # be needed for it to take effect immediately.
 defaults -currentHost write -g com.apple.sound.beep.feedback -bool true
+
+# Don't show recently-used apps in the Dock, separate from pinned icons.
+# Without this, launching a short-lived GUI process (e.g. the theme
+# picker's floating Ghostty window) leaves a stray Dock icon behind
+# after it quits, until enough other apps get opened to push it out.
+defaults write com.apple.dock show-recents -bool false
+killall Dock 2>/dev/null || true
 {{ end -}}
