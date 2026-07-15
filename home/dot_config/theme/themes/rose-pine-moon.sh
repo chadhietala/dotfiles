@@ -1,6 +1,7 @@
 #!/bin/bash
-# "rocket-sunset" theme — pulled from the sky-rockets wallpaper: gold meteor
-# streaks, coral-pink sky, violet top, plum clouds.
+# "rose-pine-moon" theme — pulled from the sky-rockets wallpaper: gold meteor
+# streaks, coral-pink sky, violet top, plum clouds. Matches Ghostty's Rose
+# Pine Moon terminal theme.
 
 export THEME_WALLPAPER="$HOME/Pictures/Wallpapers/sunset.webp"
 export THEME_GHOSTTY="Rose Pine Moon"
