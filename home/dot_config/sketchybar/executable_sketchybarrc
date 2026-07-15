@@ -46,7 +46,7 @@ sketchybar --add item theme-picker left \
   --set theme-picker \
   icon=󰏘 icon.color=$FONT_COLOR \
   icon.font.size=15 \
-  label.drawing=off \
+  label="Theme" label.drawing=on \
   click_script="$HOME/.config/theme/open-picker.sh"
 
 # Front app
