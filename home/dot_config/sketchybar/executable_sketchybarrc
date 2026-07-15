@@ -41,6 +41,14 @@ sketchybar --add item os left \
   background.drawing=off \
   background.padding_right=$GAP
 
+# Theme picker
+sketchybar --add item theme-picker left \
+  --set theme-picker \
+  icon=󰏘 icon.color=$FONT_COLOR \
+  icon.font.size=15 \
+  label.drawing=off \
+  click_script="$HOME/.config/theme/open-picker.sh"
+
 # Front app
 sketchybar --add item front-app left \
   --set front-app \
@@ -75,7 +83,7 @@ sketchybar --add item sysinfo left \
   label.padding_right=14
 
 # Group all left items into one pill, clear of the notch
-sketchybar --add bracket left_group os front-app mic weather sysinfo \
+sketchybar --add bracket left_group os theme-picker front-app mic weather sysinfo \
   --set left_group \
   background.color=$BG \
   background.corner_radius=12 \

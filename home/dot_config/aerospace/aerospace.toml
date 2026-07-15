@@ -17,6 +17,14 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
+# Keep the theme picker floating instead of being tiled into the grid
+on-window-detected = [
+    {
+        if = 'test %{window-title} = "Theme Picker"',
+        run = ['layout floating'],
+    },
+]
+
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true

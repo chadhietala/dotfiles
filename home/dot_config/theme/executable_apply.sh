@@ -22,7 +22,8 @@ sleep 0.5
 "$HOME/.config/aerospace/start-borders.sh" &
 disown
 
-# Sketchybar (re-running the rc script re-applies config to the live bar)
-"$HOME/.config/sketchybar/sketchybarrc"
+# Sketchybar (re-running the rc script re-applies config to the live bar).
+# "Item already exists" warnings on re-add are expected noise - silenced.
+"$HOME/.config/sketchybar/sketchybarrc" >/dev/null 2>&1
 
 echo "Theme applied."
