@@ -15,9 +15,11 @@ export THEME_DANGER="0xffff6f61" # coral-red (mic privacy alert)
 export THEME_SUCCESS="0xffc4d97a" # warm olive-lime (battery full)
 
 # Window borders (JankyBorders)
+# Integer width only - fractional values (e.g. 3.7) caused a stray render
+# artifact where AeroSpace tiles windows together.
 export THEME_BORDER_ACTIVE="0xFFFFB870"
 export THEME_BORDER_INACTIVE="0xff7a3a5c"
-export THEME_BORDER_WIDTH="3.7"
+export THEME_BORDER_WIDTH="4"
 
 # Active workspace pill background (translucent gold)
 export THEME_ACCENT_SUBTLE="0x55ffcf87"

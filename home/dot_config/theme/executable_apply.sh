@@ -18,7 +18,7 @@ fi
 
 # Window borders (kill any running instance, JankyBorders dedupes on launch)
 pkill -x borders 2>/dev/null || true
-sleep 0.2
+sleep 0.5
 "$HOME/.config/aerospace/start-borders.sh" &
 disown
 
