@@ -41,14 +41,6 @@ sketchybar --add item os left \
   background.drawing=off \
   background.padding_right=$GAP
 
-# Theme picker
-sketchybar --add item theme-picker left \
-  --set theme-picker \
-  icon=󰏘 icon.color=$FONT_COLOR \
-  icon.font.size=15 \
-  label="Theme" label.drawing=on \
-  click_script="$HOME/.config/theme/open-picker.sh"
-
 # Front app
 sketchybar --add item front-app left \
   --set front-app \
@@ -82,8 +74,16 @@ sketchybar --add item sysinfo left \
   update_freq=30 \
   label.padding_right=14
 
+# Theme picker
+sketchybar --add item theme-picker left \
+  --set theme-picker \
+  icon=󰏘 icon.color=$FONT_COLOR \
+  icon.font.size=15 \
+  label="Theme" label.drawing=on \
+  click_script="$HOME/.config/theme/open-picker.sh"
+
 # Group all left items into one pill, clear of the notch
-sketchybar --add bracket left_group os theme-picker front-app mic weather sysinfo \
+sketchybar --add bracket left_group os front-app mic weather sysinfo theme-picker \
   --set left_group \
   background.color=$BG \
   background.corner_radius=12 \
@@ -140,7 +140,7 @@ sketchybar --add event spotify_change com.spotify.client.PlaybackStateChanged
 sketchybar --add item spotify right \
   --set spotify \
   background.padding_left=$GAP \
-  label.max_chars=30 \
+  label.max_chars=20 \
   scroll_texts=on \
   script="$PLUGIN_DIR/spotify.sh" \
   --subscribe spotify spotify_change mouse.clicked
