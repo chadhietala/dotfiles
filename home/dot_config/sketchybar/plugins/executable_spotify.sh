@@ -62,26 +62,32 @@ update_track() {
 
   if [[ ! -z $SPOTIFY_JSON ]]; then
     PLAYER_STATE=$(echo "$SPOTIFY_JSON" | jq -r '.["Player State"]')
-    update_playpause_icon
-
-    if [ $PLAYER_STATE = "Playing" ]; then
-      TRACK="$(echo "$SPOTIFY_JSON" | jq -r .Name)"
-      ARTIST="$(echo "$SPOTIFY_JSON" | jq -r .Artist)"
-
-      start_cava
-      sketchybar --set $NAME \
-        label="${ARTIST} - ${TRACK}" \
-        icon.color=$PLAYING_COLOR \
-        icon.font.size=10 \
-        label.width=dynamic icon.width=dynamic \
-        background.drawing=on
-    else
-      stop_cava
-      sketchybar --set $NAME \
-        label="" icon="" \
-        label.width=0 icon.width=0 \
-        background.drawing=off
+    TRACK="$(echo "$SPOTIFY_JSON" | jq -r .Name)"
+    ARTIST="$(echo "$SPOTIFY_JSON" | jq -r .Artist)"
+  else
+    # No event payload - this is a generic `--update` (e.g. re-running
+    # sketchybarrc on a theme switch), not a real Spotify notification.
+    # Ask Spotify directly instead of assuming it's paused, or an actively
+    # playing track would blank out every time the theme changes.
+    PLAYER_STATE=""
+    if osascript -e 'application "Spotify" is running' 2>/dev/null | grep -q true; then
+      PLAYER_STATE=$(osascript -e 'tell application "Spotify" to player state as string' 2>/dev/null)
+      [[ "$PLAYER_STATE" == "playing" ]] && PLAYER_STATE="Playing"
+      TRACK=$(osascript -e 'tell application "Spotify" to name of current track' 2>/dev/null)
+      ARTIST=$(osascript -e 'tell application "Spotify" to artist of current track' 2>/dev/null)
     fi
+  fi
+
+  update_playpause_icon
+
+  if [ "$PLAYER_STATE" = "Playing" ]; then
+    start_cava
+    sketchybar --set $NAME \
+      label="${ARTIST} - ${TRACK}" \
+      icon.color=$PLAYING_COLOR \
+      icon.font.size=10 \
+      label.width=dynamic icon.width=dynamic \
+      background.drawing=on
   else
     stop_cava
     sketchybar --set $NAME \
