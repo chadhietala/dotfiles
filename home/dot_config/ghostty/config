@@ -1,4 +1,5 @@
 theme = TokyoNight Storm
+font-family = Cascadia Code
 cursor-style = block
 cursor-style-blink = true
 shell-integration-features = no-cursor,no-sudo,title,no-ssh-env,no-ssh-terminfo,path
