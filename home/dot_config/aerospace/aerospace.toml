@@ -156,7 +156,7 @@ outer.right =      16
 #
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Code - Insiders|Cursor|Simulator|Warp|Xcode|VSCode'
+if.app-name-regex-substring = 'Code - Insiders|Cursor|Simulator|Warp|Xcode|VSCode|ChatGPT'
 run = ['layout tiling', 'move-node-to-workspace 2']
 
 # Keep the theme picker floating instead of being tiled into the grid.
@@ -186,6 +186,14 @@ run = 'move-node-to-workspace 5'
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ['layout tiling', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'finder'
