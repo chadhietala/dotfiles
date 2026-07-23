@@ -118,18 +118,29 @@ end
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Default editor for opencode, git, and anything that reads $EDITOR/$VISUAL
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+
 function jup
   jj git fetch && jj rebase --skip-emptied -r 'mutable() & mine()' -d master
 end
 
 # Added by Antigravity
-fish_add_path /Users/chietala/.antigravity/antigravity/bin
+fish_add_path {{ .chezmoi.homeDir }}/.antigravity/antigravity/bin
 
 # opencode
-fish_add_path /Users/chietala/.opencode/bin
+fish_add_path {{ .chezmoi.homeDir }}/.opencode/bin
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
+{{ if .isWork }}
+# >>> vercel ai-gateway >>>
+# Managed by `vercel ai-gateway coding-agents setup` — safe to remove this block.
+set -gx ANTHROPIC_AUTH_TOKEN (/usr/bin/security find-generic-password -s 'Vercel AI Gateway' -a 'vercel-ai-gateway' -w 2>/dev/null)
+set -gx AI_GATEWAY_API_KEY (/usr/bin/security find-generic-password -s 'Vercel AI Gateway' -a 'vercel-ai-gateway' -w 2>/dev/null)
+# <<< vercel ai-gateway <<<
+{{ end -}}
