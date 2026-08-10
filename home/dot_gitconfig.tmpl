@@ -1,6 +1,14 @@
 [user]
 	name = {{ .name | quote }}
 	email = {{ .email | quote }}
+	signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHfSpttHWM9NY6fs8+HKyrGMgcspzcNBM530T1nUZXOJ"
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = {{ printf "%s/.config/git/allowed_signers" .chezmoi.homeDir | quote }}
+[commit]
+	gpgsign = true
 [pull]
 	rebase = true
 [core]
