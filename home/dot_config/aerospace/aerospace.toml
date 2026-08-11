@@ -157,7 +157,7 @@ outer.right =      16
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Code - Insiders|Cursor|Simulator|Warp|Xcode|VSCode|ChatGPT'
-run = ['layout tiling', 'move-node-to-workspace 2']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 # Keep the theme picker floating instead of being tiled into the grid.
 # Must come before the general Ghostty rule below - both match the
@@ -173,7 +173,7 @@ run = ['layout floating']
 # ones, which was worse than the bug itself. Left un-fixed on purpose.
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ghostty|iTerm|terminal'
-run = ['layout tiling', 'move-node-to-workspace 3']
+run = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
