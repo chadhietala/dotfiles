@@ -115,10 +115,21 @@ sketchybar --add item volume right \
   update_freq=30 \
   --subscribe volume volume_change mouse.clicked
 
-# Aerospace Workspaces: one badge per numbered workspace, active one highlighted
+# Spaceman Workspaces: one badge per numbered workspace, active one highlighted
 sketchybar --add event aerospace_workspace_change
 
-for sid in $(aerospace list-workspaces --all | sort -rn); do
+SPACEMAN="/Applications/Spaceman.app/Contents/MacOS/spaceman"
+
+# Hidden watcher: fires aerospace_workspace_change immediately on app switches and
+# within 1s on switches to empty or same-app workspaces.
+sketchybar --add item spaceman_watcher right \
+  --set spaceman_watcher \
+  drawing=off \
+  update_freq=1 \
+  script="$PLUGIN_DIR/spaceman-watcher.sh" \
+  --subscribe spaceman_watcher front_app_switched
+
+for sid in 9 8 7 6 5 4 3 2 1; do
   sketchybar --add item space.$sid right \
     --subscribe space.$sid aerospace_workspace_change \
     --set space.$sid \
@@ -131,7 +142,7 @@ for sid in $(aerospace list-workspaces --all | sort -rn); do
     background.height=22 \
     background.color=$THEME_ACCENT_SUBTLE \
     background.drawing=off \
-    click_script="aerospace workspace $sid" \
+    click_script="$SPACEMAN ctl switch $sid && sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$sid" \
     script="$PLUGIN_DIR/workspace.sh $sid"
 done
 

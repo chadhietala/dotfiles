@@ -1,0 +1,143 @@
+# Migrated from ~/.config/aerospace/aerospace.toml
+# Rules are ordered; the first match wins.
+version = 1
+
+[settings]
+mouse_follows_focus = "display"
+
+[settings.gaps]
+inner = 16
+outer = 16
+top = 30
+
+[labs]
+workspace_steps = true
+
+[shortcuts]
+defaults = false
+
+[shortcuts.bindings]
+"alt+h" = "none"
+"cmd+alt+h" = "none"
+"alt+left" = "focus left"
+"alt+down" = "focus down"
+"alt+up" = "focus up"
+"alt+right" = "focus right"
+"alt+shift+left" = "move-direction left"
+"alt+shift+down" = "move-direction down"
+"alt+shift+up" = "move-direction up"
+"alt+shift+right" = "move-direction right"
+"alt+=" = "resize grow"
+"alt+-" = "resize shrink"
+"alt+j" = "layout"
+"alt+f" = "fullscreen"
+"alt+1" = "switch 1"
+"alt+2" = "switch 2"
+"alt+3" = "switch 3"
+"alt+4" = "switch 4"
+"alt+5" = "switch 5"
+"alt+6" = "switch 6"
+"alt+7" = "switch 7"
+"alt+8" = "switch 8"
+"alt+9" = "switch 9"
+"alt+0" = "switch 10"
+"alt+shift+1" = "move 1 --follow"
+"alt+shift+2" = "move 2 --follow"
+"alt+shift+3" = "move 3 --follow"
+"alt+shift+4" = "move 4 --follow"
+"alt+shift+5" = "move 5 --follow"
+"alt+shift+6" = "move 6 --follow"
+"alt+shift+7" = "move 7 --follow"
+"alt+shift+8" = "move 8 --follow"
+"alt+shift+9" = "move 9 --follow"
+"alt+shift+0" = "move 10 --follow"
+"alt+pageup" = "switch prev"
+"alt+pagedown" = "switch next"
+"alt+home" = "switch 1"
+"alt+end" = "switch 5"
+"alt+tab" = "back-and-forth"
+"alt+shift+tab" = "move-workspace next"
+"alt+`" = "focus next"
+"alt+ctrl+shift+d" = "balance"
+"alt+shift+f" = "float"
+"alt+ctrl+shift+f" = "float"
+
+# --- Workspace 3: editors / dev tools ---
+[[rules]]
+bundle_id = "com.microsoft.VSCodeInsiders"
+action = "route"
+workspace = 3
+
+[[rules]]
+bundle_id = "com.openai.codex" # ChatGPT
+action = "route"
+workspace = 3
+
+# --- Ghostty theme picker floats (must precede the Ghostty route) ---
+[[rules]]
+bundle_id = "com.mitchellh.ghostty"
+title = "Theme Picker"
+action = "float"
+
+# --- Workspace 2: terminals ---
+[[rules]]
+bundle_id = "com.mitchellh.ghostty"
+action = "route"
+workspace = 2
+
+[[rules]]
+bundle_id = "com.apple.Terminal"
+action = "route"
+workspace = 2
+
+# --- App workspaces ---
+[[rules]]
+bundle_id = "com.google.Chrome"
+action = "route"
+workspace = 1
+
+[[rules]]
+bundle_id = "com.spotify.client"
+action = "route"
+workspace = 4
+
+[[rules]]
+bundle_id = "com.tinyspeck.slackmacgap"
+action = "route"
+workspace = 5
+
+[[rules]]
+bundle_id = "notion.id"
+action = "route"
+workspace = 6
+
+[[rules]]
+bundle_id = "us.zoom.xos"
+action = "route"
+workspace = 7
+
+# --- Floating ---
+[[rules]]
+bundle_id = "com.apple.finder"
+action = "float"
+
+[[rules]]
+bundle_id = "com.1password.1password"
+action = "ignore"
+
+[[rules]]
+bundle_id = "com.apple.ActivityMonitor"
+action = "float"
+
+[[rules]]
+bundle_id = "com.apple.AppStore"
+action = "float"
+
+[[rules]]
+bundle_id = "com.apple.clock"
+action = "float"
+
+[[rules]]
+bundle_id = "com.superlogical.rex"
+action = "route"
+workspace = 2
